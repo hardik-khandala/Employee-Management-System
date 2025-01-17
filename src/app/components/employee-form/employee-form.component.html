@@ -1,0 +1,90 @@
+<div class="w-[25%] mx-auto">
+  <div class="flex flex-col w-full rounded-xl bg-transparent">
+    <form [formGroup]="myForm" class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+      <div class="mb-1 flex flex-col gap-6">
+        <div class="w-full max-w-sm min-w-[200px]">
+          <label class="block mb-2 text-sm text-slate-600">Name </label>
+          <input formControlName="name" type="text"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            placeholder="Name" />
+        </div>
+        <div class="w-full max-w-sm min-w-[200px]">
+          <label class="block mb-2 text-sm text-slate-600"> Email </label>
+          <input formControlName="email" type="email"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            placeholder="Email" />
+        </div>
+        <span class="text-red-400" *ngIf="
+            myForm.get('email')?.hasError('email') ||
+            (myForm.get('email')?.hasError('required') &&
+              myForm.get('email')?.touched &&
+              isAdd)
+          ">Email is required!</span>
+        <span class="text-red-400" *ngIf="
+            myForm.get('email')?.hasError('uniqeEmail') &&
+            myForm.get('email')?.touched &&
+            isAdd
+          ">Email already exists</span>
+        <div class="w-full max-w-sm min-w-[200px]">
+          <label class="block mb-2 text-sm text-slate-600"> Phone </label>
+          <input formControlName="phone" type="number"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+            placeholder="Phone" />
+          <span class="text-red-400" *ngIf="
+              myForm.get('phone')?.hasError('required') &&
+              myForm.get('phone')?.touched &&
+              isAdd
+            ">Phone required</span>
+          <span class="text-red-400" *ngIf="
+              myForm.get('phone')?.hasError('uniqePhone') &&
+              myForm.get('phone')?.touched &&
+              isAdd
+            ">Phone already exists</span>
+        </div>
+        <div class="w-full max-w-sm min-w-[200px]">
+          <label class="block mb-2 text-sm text-slate-600"> Status </label>
+          <select formControlName="status"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer">
+            <option value="" selected>Select Status</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">InActive</option>
+          </select>
+        </div>
+        <div class="w-full max-w-sm min-w-[200px]">
+          <label class="block mb-2 text-sm text-slate-600"> Post </label>
+          <select formControlName="post"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer">
+            <option value="" selected>Select Post</option>
+            <option value="Developer">Developer</option>
+            <option value="Manager">Manager</option>
+          </select>
+        </div>
+        <div class="w-full max-w-sm min-w-[200px]">
+          <label class="block mb-2 text-sm text-slate-600">Joining Date </label>
+          <input formControlName="doj" type="date"
+            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" />
+        </div>
+      </div>
+
+      <button *ngIf="isAdd" (click)="handleSubmit()"
+        class="mt-4 w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="submit">
+        Add Employee
+      </button>
+      <ng-container *ngIf="!isUpdate && !isAdd">
+        <button (click)="handleViewUpdate()"
+          class="mt-4 w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="submit">
+          Update Employee ?
+        </button>
+      </ng-container>
+      <ng-container *ngIf="isUpdate && !isAdd">
+        <button (click)="handleUpdate()"
+          class="mt-4 w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="submit">
+          Update
+        </button>
+      </ng-container>
+    </form>
+  </div>
+</div>

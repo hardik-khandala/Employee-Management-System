@@ -1,0 +1,56 @@
+<div
+  class="flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-auto p-2"
+>
+  <div class="w-full">
+    <ul
+      class="relative flex flex-wrap px-1.5 py-1.5 list-none rounded-md bg-slate-100"
+      data-tabs="tabs"
+      role="list"
+    >
+      <li class="z-30 flex-auto text-center">
+        <a
+          routerLinkActive="bg-white border-slate-800 border-2"
+          routerLink="personal"
+          class="flex items-center justify-center w-full px-0 py-2 mb-0 text-sm transition-all ease-in-out border-0 rounded-lg cursor-pointer text-slate-600 bg-inherit"
+          data-tab-target=""
+          role="tab"
+          aria-selected="false"
+          aria-controls="profile"
+        >
+          Personal
+        </a>
+      </li>
+      <li class="z-30 flex-auto text-center">
+        <a
+          routerLinkActive="bg-white border-slate-800 border-2"
+          routerLink="projects"
+          class="flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-lg cursor-pointer text-slate-700 bg-inherit"
+          data-tab-target=""
+          role="tab"
+          aria-selected="false"
+          aria-controls="settings"
+        >
+          Projects
+        </a>
+      </li>
+      <ng-container></ng-container>
+      <li *ngIf="!isNull" class="z-30 flex-auto text-center">
+        <a
+          routerLinkActive="bg-white border-slate-800 border-2"
+          routerLink="projects-assign"
+          class="flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-lg cursor-pointer text-slate-700 bg-inherit"
+          data-tab-target=""
+          role="tab"
+          aria-selected="false"
+          aria-controls="settings"
+        >
+          Assigned Projects
+        </a>
+      </li>
+    </ul>
+
+    <div data-tab-content="" class="p-3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
